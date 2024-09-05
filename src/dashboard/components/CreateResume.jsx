@@ -13,12 +13,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import GlobalApi from "../../../service/GlobalApi";
 import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
 const CreateResume = () => {
   const [openDialogue, setOpenDialogue] = useState(false);
   const [resumeTitle, setResumeTitle] = useState();
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
+
+  const navigation = useNavigate()
 
   const handleCreate = async () => {
     setLoading(true);
@@ -34,9 +37,10 @@ const CreateResume = () => {
 
     GlobalApi.CreateNewResume(data).then(
       (res) => {
-        console.log(res)
+        // const docId = res.data.data.documentId
         if (res) {
           setLoading(false);
+          navigation(`/dashboard/resume/${res.data.data.documentId}/edit`)
         }
       },
       (error) => {

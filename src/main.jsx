@@ -8,6 +8,7 @@ import "./index.css";
 import SignInPage from "./auth/sign-in/SignInPage.jsx";
 import Dashboard from "./dashboard/Dashboard.jsx";
 import Home from "./home/Home.jsx";
+import EditResume from "./dashboard/resume/[resumeId]/EditResume.jsx";
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },  
+      {
+        path: "/dashboard/resume/:resumeId/edit",
+        element: <EditResume />,
       },
     ],
   },
